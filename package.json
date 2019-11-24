@@ -1,0 +1,28 @@
+{
+  "name": "algorithms",
+  "version": "1.0.0",
+  "description": "algorithms solved from codewars, codefights, etc. tracked with git-to-beeminder.",
+  "main": "index.js",
+  "scripts": {
+    "send-to-beeminder": "./scripts/post-commit.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenvega/algorithms.git"
+  },
+  "husky": {
+    "hooks": {
+      "post-commit": "npm run send-to-beeminder"
+    }
+  },
+  "keywords": [],
+  "author": "Ken Vega",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kenvega/algorithms/issues"
+  },
+  "homepage": "https://github.com/kenvega/algorithms#readme",
+  "devDependencies": {
+    "husky": "^3.1.0"
+  }
+}
