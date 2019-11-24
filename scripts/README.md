@@ -1,6 +1,6 @@
 # about scripts
 
-scripts to sent commmit data to beeminder
+scripts to sent commit data to beeminder
 
 if having problems, check these:
 
