@@ -17,7 +17,8 @@ module.exports = {
   },
   rules: {
     "no-use-before-define": "off",
-    "max-len": ["error", { "ignoreComments": true }],
-    "arrow-parens": ["error", "as-needed"]
+    "max-len": ["error", { "code": 100, "ignoreComments": true }],
+    "arrow-parens": ["error", "as-needed"],
+    "no-plusplus": "off",
   },
 };
