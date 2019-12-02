@@ -16,7 +16,7 @@
 
 /**
  * my solution:
- * a for loop
+ * a for loop between the limits given
  */
 
 function gap(g, m, n) {
@@ -31,10 +31,8 @@ function gap(g, m, n) {
 }
 
 function isNumberPrime(number) {
-  for (let i = 2; i < number; i++) {
-    if (number % i === 0) {
-      return false;
-    }
+  for (let i = 2; i * i <= number; i++) {
+    if (number % i === 0) return false;
   }
   return true;
 }
@@ -44,3 +42,14 @@ console.log(gap(4, 100, 110)); // [103, 107]
 console.log(gap(8, 300, 400)); // [359, 367]
 console.log(gap(10, 300, 400)); // [337, 347]
 console.log(gap(6, 100, 110)); // null
+
+
+// slow version of helper function I first tried.
+function isNumberPrimeOld(number) {
+  for (let i = 2; i < number; i++) {
+    if (number % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
