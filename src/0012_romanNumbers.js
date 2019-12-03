@@ -23,7 +23,7 @@
 
 // my solution
 // get the digits from the number
-// form the roman numbers based on the digits
+// form the roman numbers based on the digits - you will need a table conversion for this
 
 function solution(number) {
   const conversion = [
