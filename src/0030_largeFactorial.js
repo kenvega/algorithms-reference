@@ -51,4 +51,21 @@ const multiply = (a, b) => {
 };
 
 
-console.log(multiply(32, 5236));
+console.log(factorial(10)); // 3628800
+
+// another solution from codewars
+
+function factorial2(n) {
+  const res = [1];
+  for (let i = 2; i <= n; ++i) {
+    let c = 0;
+    for (let j = 0; j < res.length || c !== 0; ++j) {
+      c += (res[j] || 0) * i;
+      res[j] = c % 10;
+      c = Math.floor(c / 10);
+    }
+  }
+  return res.reverse().join('');
+}
+
+console.log(factorial2(10)); // 3628800
