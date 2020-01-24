@@ -23,10 +23,10 @@ def tickets(people)
       count25 -= 1
     when 100
       if count50 > 0
-        count50 -=1
-        count25 -=1
+        count50 -= 1
+        count25 -= 1
       else
-        count25 -=3
+        count25 -= 3
       end
     end
 
