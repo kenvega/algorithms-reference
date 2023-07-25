@@ -1,2 +1,28 @@
 applicable use case
   search a person in a phone book
+
+  guess a number I'm thinking between 1 and 100 in the least steps possible
+
+requisites
+  your list has to be ordered to work
+    e.g. names in a phone book are sorted in alphabetical order
+
+how to
+  do the binary search
+    repeatedly divide the sorted array in half
+    then check if the target value is in the left half or the right half
+    until the value is found or the range is empty
+
+timing
+  linear time
+    max number of guesses is the same as the size of the list
+
+    denoted like this
+      O(n)
+
+  logarithmic time
+
+    denoted like this
+      O(log n)
+
+  where 'n' represent the number of operations
