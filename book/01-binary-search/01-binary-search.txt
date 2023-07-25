@@ -1,0 +1,2 @@
+applicable use case
+  search a person in a phone book

@@ -1,0 +1,2 @@
+algorithm
+  instructions to accomplish a task
