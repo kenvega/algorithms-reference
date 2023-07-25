@@ -23,7 +23,7 @@
 
 
 conclusion
-  for any ordered array of N elements the max steps to find a value using binary search is
-
-    log2 (N)
+  for any ordered array of N elements
+    the max steps to find a value using binary search is
+      log2 (N)
 
