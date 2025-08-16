@@ -50,7 +50,8 @@ function firstNonRepeatingLetter(s) {
 // when going through keys of an object with: for (const key in object)
 //  you don't iterate those keys in the order as they appear in your object
 //  so take that into account
-// if you want characters of a string with a for make sure to use 'of' instead of 'in'
+
+// if you want characters of a string with a 'for' make sure to use 'of' instead of 'in'
 //  use: for (const letter of string) instead of for (const letter in string)
 //  because the in will give you the indices instead of the characteres of the string
 
@@ -63,4 +64,22 @@ function firstNonRepeatingLetter(s) {
     }
   }
   return "";
+}
+
+// solution from AI
+function firstNonRepeatingLetter(s) {
+  const mapping = Object.create(null);
+
+  for (const ch of s) {
+    const l = ch.toLowerCase();
+    mapping[l] = (mapping[l] || 0) + 1;
+  }
+
+  for (const ch of s) {
+    if (mapping[ch.toLowerCase()] === 1) {
+      return ch; // preserves original case
+    }
+  }
+
+  return '';
 }
