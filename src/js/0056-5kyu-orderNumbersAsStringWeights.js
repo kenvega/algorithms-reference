@@ -55,6 +55,6 @@ function orderWeight(strng) {
 // return 0 or NaN to indicate that 'a' and 'b' are considered equal
 
 // to make comparison between strings you can use .localeCompare or the signs '<' and '>'
-
+//  localeCompare has more options (e.g. can compare with case insensitive)
 
 

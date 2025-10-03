@@ -61,8 +61,20 @@ function partsSums(array) {
 
 // to remember
 // concat creates a new array and copies all elements over
-//  so if concat is inside a for loop then it makes it O(n²)
-
+//   so if concat is inside a for loop then it makes it O(n²)
 // push is linear/faster
 
+// you can separate space for your array if you know the length already
+//  with new Array(lengthOfTheArray)
 
+// other solution. iterating backwards
+function partsSums(ls) {
+  let res = new Array(ls.length + 1);
+  res[ls.length] = 0;
+
+  for (let i = ls.length - 1; i >= 0; i--) {
+    res[i] = res[i + 1] + ls[i];
+  }
+
+  return res;
+}

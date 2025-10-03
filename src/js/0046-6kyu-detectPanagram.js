@@ -32,7 +32,10 @@ function isPangram(string){
 // things to remember
 // strings don't have the array methods like forEach, map, reduce, etc
 // seems that you can compare characters with '>' or '<' as if they were numbers
-// 
+//  but remember that this is lexicographic comparison so be careful
+//   "AA"   >= "A" && "AA"   <= "Z"   // true
+//   "A0"   >= "A" && "A0"   <= "Z"   // true
+//  it is best to also check that the length of the variable you are comparing is 1
 
 // other solution
 
