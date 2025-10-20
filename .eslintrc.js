@@ -20,5 +20,10 @@ module.exports = {
     "max-len": ["error", { "code": 100, "ignoreComments": true }],
     "arrow-parens": ["error", "as-needed"],
     "no-plusplus": "off",
+    "quotes": ["error", "double", { "avoidEscape": true }],
+    "no-console": "off",
+    "semi": ["error", "never"],
+    "no-trailing-spaces": "off",
+    "operator-linebreak": "off"
   },
 };
