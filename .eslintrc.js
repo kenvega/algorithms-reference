@@ -24,6 +24,10 @@ module.exports = {
     "no-console": "off",
     "semi": ["error", "never"],
     "no-trailing-spaces": "off",
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "no-continue": "off",
+    "arrow-parens": "off",
+    "array-callback-return": "off",
+    "consistent-return": "off"
   },
 };
