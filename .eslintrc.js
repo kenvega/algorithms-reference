@@ -28,6 +28,15 @@ module.exports = {
     "no-continue": "off",
     "arrow-parens": "off",
     "array-callback-return": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "operator-assignment": "off",
+    "no-param-reassign": "off",
+    "implicit-arrow-linebreak": "off",
+    "arrow-body-style": "off",
+    "no-else-return": "off",
+    "prefer-destructuring": "off",
+    "no-restricted-globals": "off",
+    "comma-dangle": "off",
+    "radix": "off"
   },
 };
