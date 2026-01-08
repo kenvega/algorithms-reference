@@ -10,11 +10,6 @@
     "type": "git",
     "url": "git+https://github.com/kenvega/algorithms.git"
   },
-  "husky": {
-    "hooks": {
-      "post-commit": "npm run send-to-beeminder"
-    }
-  },
   "keywords": [],
   "author": "Ken Vega",
   "license": "MIT",
@@ -28,7 +23,6 @@
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.1.1",
-    "husky": "^3.1.0",
     "prettier": "^3.6.2"
   }
 }
