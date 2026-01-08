@@ -1,0 +1,7 @@
+#!/bin/sh
+# goes in .git/hooks/pre-commit 
+# no extension needed in the file
+# but you will need to make it executable -> chmod +x .git/hooks/pre-commit
+#
+# Run the metric updater every commit
+"$(git rev-parse --show-toplevel)/scripts/update_lines_added.sh"
