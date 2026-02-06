@@ -28,26 +28,31 @@
  * @param {string} s
  * @return {number}
  */
-function lengthOfLongestSubstring(s) {
-  let maxCount = 1
-  let previous = s[0]
-  let letter = ""
-  let response = 0
+function lengthOfLongestSubstring(string) {
+  let noRepeatString = ""
+  let maxCount = 0
+  let lastMaxCount = 0
 
-  // TODO: need to fix and finish the logic
+  for (let i = 0; i < string.length; i++) {
+    console.log(noRepeatString, string[i], lastMaxCount, maxCount)
 
-  for (let i = 1; i < s.length; i++) {
-    letter = s[i]
+    if (noRepeatString.includes(string[i])) {
+      noRepeatString = string[i]
 
-    if (letter === previous) {
-      if (maxCount > response) {
-        response = maxCount
+      if (lastMaxCount > maxCount) {
+        maxCount = lastMaxCount
+        lastMaxCount = 1
       }
-      maxCount = 1
-    }
+    } else {
+      noRepeatString += string[i]
+      lastMaxCount++
 
-    maxCount++
-    previous = s[i]
+      if (i === string.length - 1) {
+        if (lastMaxCount > maxCount) {
+          maxCount = lastMaxCount
+        }
+      }
+    }
   }
 
   return maxCount
@@ -56,3 +61,6 @@ function lengthOfLongestSubstring(s) {
 console.log(lengthOfLongestSubstring("abcabcbb")) // 3
 console.log(lengthOfLongestSubstring("bbbbb")) // 1
 console.log(lengthOfLongestSubstring("pwwkew")) // 3
+console.log(lengthOfLongestSubstring("dvdf")) // 3 // TODO: still fails here. should return 2
+console.log(lengthOfLongestSubstring("au")) // 2
+console.log(lengthOfLongestSubstring("c")) // 1
