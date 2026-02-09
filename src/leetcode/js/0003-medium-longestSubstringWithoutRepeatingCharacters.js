@@ -24,6 +24,11 @@
 // 0 <= s.length <= 5 * 104
 // s consists of English letters, digits, symbols and spaces
 
+// my solution (is slow)
+// when you find a reocurring character
+// don't throw everything and start again
+//   just cut the reocurrance and what was before it
+//   and keep going
 /**
  * @param {string} s
  * @return {number}
@@ -31,25 +36,33 @@
 function lengthOfLongestSubstring(string) {
   let noRepeatString = ""
   let maxCount = 0
-  let lastMaxCount = 0
+  let previousMaxCount = 0
 
   for (let i = 0; i < string.length; i++) {
-    console.log(noRepeatString, string[i], lastMaxCount, maxCount)
+    console.log(noRepeatString, string[i], previousMaxCount, maxCount)
 
     if (noRepeatString.includes(string[i])) {
-      noRepeatString = string[i]
+      // find and cut everything before
+      console.log(noRepeatString)
+      noRepeatString = noRepeatString.slice(
+        noRepeatString.indexOf(string[i]) + 1
+      )
+      console.log(noRepeatString)
+      // then add the current character
+      noRepeatString += string[i]
+      console.log(noRepeatString)
 
-      if (lastMaxCount > maxCount) {
-        maxCount = lastMaxCount
-        lastMaxCount = 1
+      if (previousMaxCount > maxCount) {
+        maxCount = previousMaxCount
+        previousMaxCount = noRepeatString.length
       }
     } else {
       noRepeatString += string[i]
-      lastMaxCount++
+      previousMaxCount++
 
       if (i === string.length - 1) {
-        if (lastMaxCount > maxCount) {
-          maxCount = lastMaxCount
+        if (previousMaxCount > maxCount) {
+          maxCount = previousMaxCount
         }
       }
     }
@@ -58,9 +71,10 @@ function lengthOfLongestSubstring(string) {
   return maxCount
 }
 
-console.log(lengthOfLongestSubstring("abcabcbb")) // 3
-console.log(lengthOfLongestSubstring("bbbbb")) // 1
-console.log(lengthOfLongestSubstring("pwwkew")) // 3
-console.log(lengthOfLongestSubstring("dvdf")) // 3 // TODO: still fails here. should return 2
-console.log(lengthOfLongestSubstring("au")) // 2
-console.log(lengthOfLongestSubstring("c")) // 1
+// console.log(lengthOfLongestSubstring("abcabcbb")) // 3
+// console.log(lengthOfLongestSubstring("bbbbb")) // 1
+// console.log(lengthOfLongestSubstring("pwwkew")) // 3
+// console.log(lengthOfLongestSubstring("dvdf")) // 3
+console.log(lengthOfLongestSubstring("jbpnbwwd")) // 4 // TODO: still fails here. should return 4 but it's returning five
+// console.log(lengthOfLongestSubstring("au")) // 2
+// console.log(lengthOfLongestSubstring("c")) // 1
