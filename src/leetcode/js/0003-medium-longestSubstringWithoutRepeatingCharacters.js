@@ -44,6 +44,7 @@ function lengthOfLongestSubstring(string) {
     if (noRepeatString.includes(string[i])) {
       // find and cut everything before
       console.log(noRepeatString)
+
       noRepeatString = noRepeatString.slice(
         noRepeatString.indexOf(string[i]) + 1
       )
