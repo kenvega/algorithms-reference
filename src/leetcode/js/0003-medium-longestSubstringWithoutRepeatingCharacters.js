@@ -35,26 +35,23 @@
  */
 function lengthOfLongestSubstring(string) {
   let noRepeatString = ""
-  let maxCount = 0
+  let highestMaxCount = 0
   let previousMaxCount = 0
 
   for (let i = 0; i < string.length; i++) {
-    console.log(noRepeatString, string[i], previousMaxCount, maxCount)
+    console.log(noRepeatString, string[i], previousMaxCount, highestMaxCount)
 
     if (noRepeatString.includes(string[i])) {
       // find and cut everything before
-      console.log(noRepeatString)
-
       noRepeatString = noRepeatString.slice(
         noRepeatString.indexOf(string[i]) + 1
       )
-      console.log(noRepeatString)
+
       // then add the current character
       noRepeatString += string[i]
-      console.log(noRepeatString)
 
-      if (previousMaxCount > maxCount) {
-        maxCount = previousMaxCount
+      if (previousMaxCount >= highestMaxCount) {
+        highestMaxCount = previousMaxCount
         previousMaxCount = noRepeatString.length
       }
     } else {
@@ -62,20 +59,21 @@ function lengthOfLongestSubstring(string) {
       previousMaxCount++
 
       if (i === string.length - 1) {
-        if (previousMaxCount > maxCount) {
-          maxCount = previousMaxCount
+        if (previousMaxCount > highestMaxCount) {
+          highestMaxCount = previousMaxCount
         }
       }
     }
   }
 
-  return maxCount
+  return highestMaxCount
 }
 
 // console.log(lengthOfLongestSubstring("abcabcbb")) // 3
 // console.log(lengthOfLongestSubstring("bbbbb")) // 1
 // console.log(lengthOfLongestSubstring("pwwkew")) // 3
 // console.log(lengthOfLongestSubstring("dvdf")) // 3
-console.log(lengthOfLongestSubstring("jbpnbwwd")) // 4 // TODO: still fails here. should return 4 but it's returning five
+console.log(lengthOfLongestSubstring("jbpnbwwd")) // 4
+console.log(lengthOfLongestSubstring("hkcpmprxxxqw")) // 5 // TODO: still fails here. should return 4 but it's returning 6
 // console.log(lengthOfLongestSubstring("au")) // 2
 // console.log(lengthOfLongestSubstring("c")) // 1
