@@ -37,25 +37,29 @@ function lengthOfLongestSubstring(string) {
   let noRepeatString = ""
   let highestMaxCount = 0
   let previousMaxCount = 0
+  let currentCharacter = ""
 
   for (let i = 0; i < string.length; i++) {
+    currentCharacter = string[i]
     console.log(noRepeatString, string[i], previousMaxCount, highestMaxCount)
 
-    if (noRepeatString.includes(string[i])) {
+    if (noRepeatString.includes(currentCharacter)) {
       // find and cut everything before
       noRepeatString = noRepeatString.slice(
-        noRepeatString.indexOf(string[i]) + 1
+        noRepeatString.indexOf(currentCharacter) + 1
       )
 
       // then add the current character
-      noRepeatString += string[i]
+      noRepeatString += currentCharacter
 
+      // check if previousMaxCount was greater than before
       if (previousMaxCount >= highestMaxCount) {
         highestMaxCount = previousMaxCount
-        previousMaxCount = noRepeatString.length
       }
+
+      previousMaxCount = noRepeatString.length
     } else {
-      noRepeatString += string[i]
+      noRepeatString += currentCharacter
       previousMaxCount++
 
       if (i === string.length - 1) {
@@ -69,11 +73,11 @@ function lengthOfLongestSubstring(string) {
   return highestMaxCount
 }
 
-// console.log(lengthOfLongestSubstring("abcabcbb")) // 3
-// console.log(lengthOfLongestSubstring("bbbbb")) // 1
-// console.log(lengthOfLongestSubstring("pwwkew")) // 3
-// console.log(lengthOfLongestSubstring("dvdf")) // 3
+console.log(lengthOfLongestSubstring("abcabcbb")) // 3
+console.log(lengthOfLongestSubstring("bbbbb")) // 1
+console.log(lengthOfLongestSubstring("pwwkew")) // 3
+console.log(lengthOfLongestSubstring("dvdf")) // 3
 console.log(lengthOfLongestSubstring("jbpnbwwd")) // 4
-console.log(lengthOfLongestSubstring("hkcpmprxxxqw")) // 5 // TODO: still fails here. should return 4 but it's returning 6
-// console.log(lengthOfLongestSubstring("au")) // 2
-// console.log(lengthOfLongestSubstring("c")) // 1
+console.log(lengthOfLongestSubstring("hkcpmprxxxqw")) // 5
+console.log(lengthOfLongestSubstring("au")) // 2
+console.log(lengthOfLongestSubstring("c")) // 1
