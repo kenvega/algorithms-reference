@@ -1,7 +1,8 @@
 // medium
 // https://leetcode.com/problems/longest-substring-without-repeating-characters
 
-// Given a string 's' find the length of the longest substring without duplicate characters
+// Given a string 's'
+//  find the length of the longest substring without duplicate characters
 
 // Example 1:
 // Input: s = "abcabcbb"
@@ -24,15 +25,11 @@
 // 0 <= s.length <= 5 * 104
 // s consists of English letters, digits, symbols and spaces
 
-// my solution (is slow)
+// my solution v1 (is slow)
 // when you find a reocurring character
 // don't throw everything and start again
 //   just cut the reocurrance and what was before it
 //   and keep going
-/**
- * @param {string} s
- * @return {number}
- */
 function lengthOfLongestSubstring(string) {
   let noRepeatString = ""
   let highestMaxCount = 0
@@ -79,5 +76,46 @@ console.log(lengthOfLongestSubstring("pwwkew")) // 3
 console.log(lengthOfLongestSubstring("dvdf")) // 3
 console.log(lengthOfLongestSubstring("jbpnbwwd")) // 4
 console.log(lengthOfLongestSubstring("hkcpmprxxxqw")) // 5
-console.log(lengthOfLongestSubstring("au")) // 2
 console.log(lengthOfLongestSubstring("c")) // 1
+console.log(lengthOfLongestSubstring("au")) // 2
+
+// solution v2 (better variable names)
+//   the 'maxCounts' variables should really be considered a window
+function lengthOfLongestSubstringv2(string) {
+  let currentWindowText = "" // the substring that contains no repeated characters
+  let bestWindowLength = 0 // the largest window length that will be recorded
+  let currentCharacter = ""
+
+  for (let i = 0; i < string.length; i++) {
+    currentCharacter = string[i]
+
+    // find if currentChar appears inside the current window
+    const duplicatePositionInWindow =
+      currentWindowText.indexOf(currentCharacter)
+
+    // if currentChar is already in the window
+    //   remove everything up to and including its previous occurrence
+    if (duplicatePositionInWindow !== -1) {
+      currentWindowText = currentWindowText.slice(duplicatePositionInWindow + 1)
+    }
+
+    // add the current character to the window
+    currentWindowText += currentCharacter
+
+    // update the best length
+    if (currentWindowText.length > bestWindowLength) {
+      bestWindowLength = currentWindowText.length
+    }
+  }
+
+  return bestWindowLength
+}
+
+console.log(lengthOfLongestSubstringv2("abcabcbb")) // 3
+console.log(lengthOfLongestSubstringv2("bbbbb")) // 1
+console.log(lengthOfLongestSubstringv2("pwwkew")) // 3
+console.log(lengthOfLongestSubstringv2("dvdf")) // 3
+console.log(lengthOfLongestSubstringv2("jbpnbwwd")) // 4
+console.log(lengthOfLongestSubstringv2("hkcpmprxxxqw")) // 5
+console.log(lengthOfLongestSubstringv2("c")) // 1
+console.log(lengthOfLongestSubstringv2("au")) // 2
