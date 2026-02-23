@@ -26,10 +26,11 @@
 // s consists of English letters, digits, symbols and spaces
 
 // my solution v1 (is slow)
-// when you find a reocurring character
-// don't throw everything and start again
-//   just cut the reocurrance and what was before it
-//   and keep going
+// have a 'window' (substring) with no repeating characters
+//  move through the string and change the window
+//  if a new character repeats in the window
+//   remove everything from the start up to that repeating character
+//  record the length of the window and update the highest length recorded
 function lengthOfLongestSubstring(string) {
   let noRepeatString = ""
   let highestMaxCount = 0
@@ -119,3 +120,22 @@ console.log(lengthOfLongestSubstringv2("jbpnbwwd")) // 4
 console.log(lengthOfLongestSubstringv2("hkcpmprxxxqw")) // 5
 console.log(lengthOfLongestSubstringv2("c")) // 1
 console.log(lengthOfLongestSubstringv2("au")) // 2
+
+// solution v3 (better performance)
+//  when checking for the repeating character
+//  instead of searching inside the window with .includes or indexOf
+//   save the index where the window starts
+//   save where each character was last seen (a Map/object/dictionary)
+//     so you can ask later have i seen this character before and where? and that search would be faster
+//  now when hitting a duplicate we just move the index where the window starts
+//  going from O(n²) (because of lookups like .includes inside another loop) to O(n) for the single loop
+function lengthOfLongestSubstringv3(string) {}
+
+console.log(lengthOfLongestSubstringv3("abcabcbb")) // 3
+console.log(lengthOfLongestSubstringv3("bbbbb")) // 1
+console.log(lengthOfLongestSubstringv3("pwwkew")) // 3
+console.log(lengthOfLongestSubstringv3("dvdf")) // 3
+console.log(lengthOfLongestSubstringv3("jbpnbwwd")) // 4
+console.log(lengthOfLongestSubstringv3("hkcpmprxxxqw")) // 5
+console.log(lengthOfLongestSubstringv3("c")) // 1
+console.log(lengthOfLongestSubstringv3("au")) // 2
