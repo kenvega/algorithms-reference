@@ -71,6 +71,7 @@ function lengthOfLongestSubstring(string) {
   return highestMaxCount
 }
 
+console.log(lengthOfLongestSubstring("abba")) // 2
 console.log(lengthOfLongestSubstring("abcabcbb")) // 3
 console.log(lengthOfLongestSubstring("bbbbb")) // 1
 console.log(lengthOfLongestSubstring("pwwkew")) // 3
@@ -112,6 +113,7 @@ function lengthOfLongestSubstringv2(string) {
   return bestWindowLength
 }
 
+console.log(lengthOfLongestSubstringv2("abba")) // 2
 console.log(lengthOfLongestSubstringv2("abcabcbb")) // 3
 console.log(lengthOfLongestSubstringv2("bbbbb")) // 1
 console.log(lengthOfLongestSubstringv2("pwwkew")) // 3
@@ -129,8 +131,38 @@ console.log(lengthOfLongestSubstringv2("au")) // 2
 //     so you can ask later have i seen this character before and where? and that search would be faster
 //  now when hitting a duplicate we just move the index where the window starts
 //  going from O(n²) (because of lookups like .includes inside another loop) to O(n) for the single loop
-function lengthOfLongestSubstringv3(string) {}
+function lengthOfLongestSubstringv3(string) {
+  let indexWindowStart = 0
+  let currentWindowLength = 0
+  let bestWindowLength = 0
+  const lastSeenCharacter = {}
+  let currentCharacter = ""
 
+  for (let i = 0; i < string.length; i++) {
+    currentCharacter = string[i]
+    // the current window length always is i - indexWindowStart
+
+    if (lastSeenCharacter[currentCharacter] !== undefined) {
+      // move the indexWindowStart to the last seen duplicate
+      if (lastSeenCharacter[currentCharacter] >= indexWindowStart) {
+        // but only move it if the previous ocurrence is inside that window (for "abba" case)
+        indexWindowStart = lastSeenCharacter[currentCharacter] + 1
+      }
+    }
+
+    lastSeenCharacter[currentCharacter] = i
+
+    currentWindowLength = i - indexWindowStart + 1
+
+    if (currentWindowLength >= bestWindowLength) {
+      bestWindowLength = currentWindowLength
+    }
+  }
+
+  return bestWindowLength
+}
+
+console.log(lengthOfLongestSubstringv3("abba")) // 2
 console.log(lengthOfLongestSubstringv3("abcabcbb")) // 3
 console.log(lengthOfLongestSubstringv3("bbbbb")) // 1
 console.log(lengthOfLongestSubstringv3("pwwkew")) // 3
