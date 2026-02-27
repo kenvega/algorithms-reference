@@ -171,3 +171,54 @@ console.log(lengthOfLongestSubstringv3("jbpnbwwd")) // 4
 console.log(lengthOfLongestSubstringv3("hkcpmprxxxqw")) // 5
 console.log(lengthOfLongestSubstringv3("c")) // 1
 console.log(lengthOfLongestSubstringv3("au")) // 2
+
+// solution v4 (better performance and using Map)
+//  lastSeenCharacter from {} to new Map()
+//  instead of lastSeenCharacter[currentCharacter] we use lastSeenCharacter.get(currentCharacter)
+//  instead of lastSeenCharacter[currentCharacter] = i we use lastSeenCharacter.set(currentCharacter, i)
+function lengthOfLongestSubstringv4(string) {
+  let indexWindowStart = 0
+  let currentWindowLength = 0
+  let bestWindowLength = 0
+
+  // Map: character -> last index where it appeared
+  const lastSeenCharacter = new Map()
+
+  let currentCharacter = ""
+
+  for (let i = 0; i < string.length; i++) {
+    currentCharacter = string[i]
+
+    // If we've seen this character before...
+    if (lastSeenCharacter.has(currentCharacter)) {
+      const lastSeenIndex = lastSeenCharacter.get(currentCharacter)
+
+      // Only move the window start forward if the duplicate is inside the current window.
+      if (lastSeenIndex >= indexWindowStart) {
+        indexWindowStart = lastSeenIndex + 1
+      }
+    }
+
+    // Record/update where we last saw this character.
+    lastSeenCharacter.set(currentCharacter, i)
+
+    // Length of window from indexWindowStart..i (inclusive)
+    currentWindowLength = i - indexWindowStart + 1
+
+    if (currentWindowLength > bestWindowLength) {
+      bestWindowLength = currentWindowLength
+    }
+  }
+
+  return bestWindowLength
+}
+
+console.log(lengthOfLongestSubstringv4("abba")) // 2
+console.log(lengthOfLongestSubstringv4("abcabcbb")) // 3
+console.log(lengthOfLongestSubstringv4("bbbbb")) // 1
+console.log(lengthOfLongestSubstringv4("pwwkew")) // 3
+console.log(lengthOfLongestSubstringv4("dvdf")) // 3
+console.log(lengthOfLongestSubstringv4("jbpnbwwd")) // 4
+console.log(lengthOfLongestSubstringv4("hkcpmprxxxqw")) // 5
+console.log(lengthOfLongestSubstringv4("c")) // 1
+console.log(lengthOfLongestSubstringv4("au")) // 2
