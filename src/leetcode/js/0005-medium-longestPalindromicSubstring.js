@@ -17,7 +17,27 @@
 // 1 <= s.length <= 1000
 // s consist of only digits and English letters.
 
-function longestPalindrome(string) {}
+// solution v1
+//  consider every character as a possible center
+//  try expanding with every center so you get all possible palindromes
+//  record the highest palindrome while doing that to return it at the end
+function longestPalindrome(string) {
+  let longestPalindromeFound = ""
+  let currentPalindromeFound = ""
+  let currentCharacter = ""
 
+  for (let i = 0; i < string.length; i++) {
+    currentCharacter = array[i]
+  }
+}
+
+console.log(longestPalindrome("aabbaaX")) // "aabbaa"
+console.log(longestPalindrome("forgeeksskeegfor")) // "geeksskeeg"
+console.log(longestPalindrome("racecarannakayak")) // "racecar"
+console.log(longestPalindrome("abccbahelloollehxyz")) // "helloolleh"
+console.log(longestPalindrome("bbbbbbbbcbbbbbbbb")) // "bbbbbbbbcbbbbbbbb"
+console.log(longestPalindrome("abcddcbaeekk")) // "abcddcba"
+console.log(longestPalindrome("abacdfgdcaba")) // "aba"
+console.log(longestPalindrome("babadada")) // "adada"
 console.log(longestPalindrome("babad")) // "bab"
 console.log(longestPalindrome("cbbd")) // "bb"
