@@ -18,17 +18,31 @@
 // s consist of only digits and English letters.
 
 // solution v1
-//  consider every character as a possible center
+//  consider every middle character as a possible center
 //  try expanding with every center so you get all possible palindromes
 //  record the highest palindrome while doing that to return it at the end
 function longestPalindrome(string) {
-  let longestPalindromeFound = ""
-  let currentPalindromeFound = ""
-  let currentCharacter = ""
+  let longestPalindromeFound = string[0]
+  let currentPalindromeFound = string[0]
+  let currentCenter = ""
 
-  for (let i = 0; i < string.length; i++) {
-    currentCharacter = array[i]
+  for (let i = 1; i < string.length - 1; i++) {
+    currentCenter = string[i]
+    currentPalindromeFound = currentCenter
+    // expand from the center and check if it is palindrome
+    // if it is, then check if it is the longest to see if you need to update it
+    // then keep doing the same until you get to an extreme of the string
+    for (let j = 1; j < i; j++) {
+      // TODO: fix logic
+      currentPalindromeFound =
+        string[i - j] + currentPalindromeFound + string[i + j]
+      if (currentPalindromeFound.length > longestPalindromeFound.length) {
+        longestPalindromeFound = currentPalindromeFound
+      }
+    }
   }
+
+  return longestPalindromeFound
 }
 
 console.log(longestPalindrome("aabbaaX")) // "aabbaa"
