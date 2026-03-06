@@ -20,7 +20,9 @@
 // Explanation: Reads 01 from right to left.
 //               Therefore it is not a palindrome.
 
-function isPalindrome(x) {}
+function isPalindrome(x) {
+  return x.toString() === x.toString().split("").reverse().join("")
+}
 
 console.log(isPalindrome(121)) // true
 console.log(isPalindrome(-121)) // false
