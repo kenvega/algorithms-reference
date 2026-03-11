@@ -29,8 +29,29 @@
 
 // Given a roman numeral, convert it to an integer.
 
-function romanToInt(s) {}
+// my solution
+//  if you have a letter that has lower value before another letter with a higher value
+//   then that is two letters as one value. e.g. IV (1 < 5) -> 5 - 1 -> 4
+function romanToInt(string) {
+  const dict = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000
+  }
+}
 
 console.log(romanToInt("III")) // 3
+console.log(romanToInt("IV")) // 4
+console.log(romanToInt("VIII")) // 8
+console.log(romanToInt("XII")) // 12
+console.log(romanToInt("XIV")) // 14
+console.log(romanToInt("XXVII")) // 27
+console.log(romanToInt("L")) // 50
+console.log(romanToInt("XL")) // 40
+console.log(romanToInt("XC")) // 90
 console.log(romanToInt("LVIII")) // 58
 console.log(romanToInt("MCMXCIV")) // 1994
