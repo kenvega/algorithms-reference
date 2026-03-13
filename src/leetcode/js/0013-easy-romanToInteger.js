@@ -42,6 +42,23 @@ function romanToInt(string) {
     D: 500,
     M: 1000
   }
+
+  let currentChar = ""
+  let nextChar = ""
+  let count = 0
+
+  for (let index = 0; index < string.length; index++) {
+    currentChar = string[index]
+    nextChar = index < string.length - 1 ? string[index + 1] : null
+
+    if (nextChar && dict[currentChar] < dict[nextChar]) {
+      count -= dict[currentChar]
+    } else {
+      count += dict[currentChar]
+    }
+  }
+
+  return count
 }
 
 console.log(romanToInt("III")) // 3
