@@ -30,8 +30,9 @@
 // Given a roman numeral, convert it to an integer.
 
 // my solution
-//  if you have a letter that has lower value before another letter with a higher value
-//   then that is two letters as one value. e.g. IV (1 < 5) -> 5 - 1 -> 4
+//  have a dictionary
+//  if you have a letter with lower value in the dictionary compared to the next letter
+//  then substract from the total instead of adding to the total
 function romanToInt(string) {
   const dict = {
     I: 1,
