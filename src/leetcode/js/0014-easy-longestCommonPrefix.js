@@ -19,4 +19,11 @@
 // 0 <= strs[i].length <= 200
 // strs[i] consists of only lowercase English letters if it is non-empty.
 
-function longestCommonPrefix(strs) {}
+function longestCommonPrefix(strings) {
+  for (let i = 0; i < strings.length; i++) {
+    const string = strings[i]
+  }
+}
+
+console.log(longestCommonPrefix(["flower", "flow", "flight"])) // "fl"
+console.log(longestCommonPrefix(["dog", "racecar", "car"])) // ""
