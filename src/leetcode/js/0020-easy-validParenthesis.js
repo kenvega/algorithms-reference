@@ -30,8 +30,48 @@
 //  Input: s = "([)]"
 //  Output: false
 
-function isValid(string) {}
+function isValid(string) {
+  let parenthesisNum = 0
+  let bracketNum = 0
+  let curlyBracketNum = 0
+
+  for (let i = 0; i < string.length; i++) {
+    const currentChar = string[i]
+    if (currentChar === "(") {
+      parenthesisNum += 1
+    }
+    if (currentChar === "[") {
+      bracketNum += 1
+    }
+    if (currentChar === "{") {
+      curlyBracketNum += 1
+    }
+    if (currentChar === ")") {
+      if (bracketNum > 0 || curlyBracketNum > 0 || parenthesisNum === 0) {
+        return false
+      }
+      parenthesisNum -= 1
+    }
+    if (currentChar === "]") {
+      if (parenthesisNum > 0 || curlyBracketNum > 0 || bracketNum === 0) {
+        return false
+      }
+      bracketNum -= 1
+    }
+    if (currentChar === "}") {
+      if (bracketNum > 0 || parenthesisNum > 0 || curlyBracketNum === 0) {
+        return false
+      }
+      curlyBracketNum -= 1
+    }
+  }
+
+  return parenthesisNum === 0 && bracketNum === 0 && curlyBracketNum === 0
+}
 
 console.log(isValid("()")) // true
 console.log(isValid("()[]{}")) // true
 console.log(isValid("(]")) // false
+console.log(isValid("([)]")) // false
+console.log(isValid("(){}}{")) // false
+console.log(isValid("([])")) // true // TODO: fix logic. should return true but it's returning false
