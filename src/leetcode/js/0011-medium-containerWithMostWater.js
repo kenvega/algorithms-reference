@@ -18,6 +18,18 @@
 //               In this case, the max area of water (blue section)
 //                the container can contain is 49
 
-function maxArea(height) {}
+// my solution
+// go through every possible case and record the max
+// double for to get eveyr possible combination i think (?)
+function maxArea(heights) {
+  let max = 0
+  for (let i = 0; i < heights.length; i++) {
+    const height = heights[i]
+    for (let j = 0; j < heights.length; j++) {
+      const otherHeight = heights[j]
+      const area = // TODO: calculate this
+    }
+  }
+}
 
 console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7])) // 49
