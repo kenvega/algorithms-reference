@@ -32,7 +32,7 @@
 // my solution
 //  have a dictionary
 //  if you have a letter with lower value in the dictionary compared to the next letter
-//  then substract from the total instead of adding to the total
+//   then substract from the total instead of adding to the total
 function romanToInt(string) {
   const dict = {
     I: 1,
@@ -48,9 +48,9 @@ function romanToInt(string) {
   let nextChar = ""
   let count = 0
 
-  for (let index = 0; index < string.length; index++) {
-    currentChar = string[index]
-    nextChar = index < string.length - 1 ? string[index + 1] : null
+  for (let i = 0; i < string.length; i++) {
+    currentChar = string[i]
+    nextChar = i < string.length - 1 ? string[i + 1] : null
 
     if (nextChar && dict[currentChar] < dict[nextChar]) {
       count -= dict[currentChar]
