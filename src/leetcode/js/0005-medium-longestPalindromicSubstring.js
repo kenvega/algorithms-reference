@@ -40,22 +40,19 @@ function longestPalindrome(string) {
   for (let i = 1; i < string.length - 1; i++) {
     let j = 1
 
-    while (true) {
-      if (
-        string[i - j] === undefined ||
-        string[i + j] === undefined ||
-        string[i - j] !== string[i + j]
-      ) {
-        if (currentPalindromeFound.length > longestPalindromeFound.length) {
-          longestPalindromeFound = currentPalindromeFound
-        }
-        break
-      }
-
-      // at this point you have a palindrome because you already did the check
+    // keep finding a bigger palindrome while you can with the current center
+    while (
+      string[i - j] !== undefined &&
+      string[i + j] !== undefined &&
+      string[i - j] === string[i + j]
+    ) {
       currentPalindromeFound = string.slice(i - j, i + j + 1)
-
       j++
+    }
+
+    // check if the biggest palindrome found for this center is bigger than one recorded before
+    if (currentPalindromeFound.length > longestPalindromeFound.length) {
+      longestPalindromeFound = currentPalindromeFound
     }
   }
 
@@ -65,6 +62,7 @@ function longestPalindrome(string) {
 console.log(longestPalindrome("ac")) // "a"
 console.log(longestPalindrome("abb")) // "bb"
 console.log(longestPalindrome("aba")) // "aba"
+console.log(longestPalindrome("abae")) // "aba"
 console.log(longestPalindrome("cbabd")) // "bab"
 console.log(longestPalindrome("babad")) // "bab"
 console.log(longestPalindrome("cbbd")) // "bb"
