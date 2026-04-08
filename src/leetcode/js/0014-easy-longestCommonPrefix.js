@@ -37,6 +37,7 @@ function longestCommonPrefix(strings) {
   const first = strings[0]
   const second = strings[1]
 
+  // build common prefix from the first two strings
   // doesn't matter if second is larger than first, what matters is what is common between both
   for (let i = 0; i < first.length; i++) {
     if (first[i] === second[i]) {
@@ -46,7 +47,8 @@ function longestCommonPrefix(strings) {
     }
   }
 
-  if (common.length === 0) {
+  // if already there is nothing in common between the first two strings you can return early
+  if (common === "") {
     return ""
   }
 
@@ -55,31 +57,27 @@ function longestCommonPrefix(strings) {
   }
 
   for (let i = 2; i < strings.length; i++) {
-    let currentString = strings[i]
+    const currentString = strings[i]
     let newCommon = ""
 
     if (currentString === "") {
       return ""
     }
 
-    // before comparing the common with the currentString, make both the same size
-    if (currentString.length > common.length) {
-      currentString = currentString.slice(0, common.length)
-    } else {
-      common = common.slice(0, currentString.length)
-    }
+    const limit = Math.min(common.length, currentString.length)
 
-    for (let j = 0; j < currentString.length; j++) {
+    for (let j = 0; j < limit; j++) {
       if (common[j] === currentString[j]) {
         newCommon += common[j]
       } else {
-        common = newCommon
         break
       }
     }
 
+    common = newCommon
+
     if (common === "") {
-      break
+      return ""
     }
   }
 
@@ -92,3 +90,6 @@ console.log(longestCommonPrefix(["abab", "aba", ""])) // ""
 console.log(longestCommonPrefix(["ac", "ac", "a", "a"])) // "a"
 console.log(longestCommonPrefix(["flower", "flow", "flight"])) // "fl"
 console.log(longestCommonPrefix(["dog", "racecar", "car"])) // ""
+
+// solution v2
+//
