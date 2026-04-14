@@ -35,8 +35,49 @@
 //   loop through the string and when you hit a closing bracket
 //    make sure that the previous bracket that was opened matches the one closing
 //     if not you can safely say it is invalid
-function isValid(string) {}
+function isValid(string) {
+  const stack = []
 
+  for (let i = 0; i < string.length; i++) {
+    const currentChar = string[i]
+
+    if (currentChar === "(" || currentChar === "[" || currentChar === "{") {
+      stack.push(currentChar)
+    }
+
+    if (currentChar === ")") {
+      if (stack[stack.length - 1] !== "(") {
+        return false
+      } else {
+        stack.pop()
+      }
+    }
+
+    if (currentChar === "]") {
+      if (stack[stack.length - 1] !== "[") {
+        return false
+      } else {
+        stack.pop()
+      }
+    }
+
+    if (currentChar === "}") {
+      if (stack[stack.length - 1] !== "{") {
+        return false
+      } else {
+        stack.pop()
+      }
+    }
+  }
+
+  if (stack.length > 0) {
+    return false
+  }
+
+  return true
+}
+
+console.log(isValid("[")) // false
 console.log(isValid("([)]")) // false
 console.log(isValid("([])")) // true
 console.log(isValid("()")) // true

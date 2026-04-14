@@ -37,6 +37,7 @@ module.exports = {
     "prefer-destructuring": "off",
     "no-restricted-globals": "off",
     "comma-dangle": "off",
-    "radix": "off"
+    "radix": "off",
+    "no-restricted-syntax": "off"
   },
 };
