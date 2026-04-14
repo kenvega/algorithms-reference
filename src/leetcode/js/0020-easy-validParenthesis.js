@@ -30,7 +30,25 @@
 //  Input: s = "([)]"
 //  Output: false
 
-function isValid(string) {
+// solution v1
+//  the correct approach is to have an stack
+//   loop through the string and when you hit a closing bracket
+//    make sure that the previous bracket that was opened matches the one closing
+//     if not you can safely say it is invalid
+function isValid(string) {}
+
+console.log(isValid("([)]")) // false
+console.log(isValid("([])")) // true
+console.log(isValid("()")) // true
+console.log(isValid("()[]{}")) // true
+console.log(isValid("(]")) // false
+console.log(isValid("(){}}{")) // false
+
+// old solution
+//  incorrect approach that uses counting
+//   this approach cannot distinguish order
+//  the correct approach is a stack
+function isValidIncorrectApproach(string) {
   let parenthesisNum = 0
   let bracketNum = 0
   let curlyBracketNum = 0
@@ -69,9 +87,9 @@ function isValid(string) {
   return parenthesisNum === 0 && bracketNum === 0 && curlyBracketNum === 0
 }
 
-console.log(isValid("()")) // true
-console.log(isValid("()[]{}")) // true
-console.log(isValid("(]")) // false
-console.log(isValid("([)]")) // false
-console.log(isValid("(){}}{")) // false
-console.log(isValid("([])")) // true // TODO: fix logic. should return true but it's returning false
+console.log(isValidIncorrectApproach("([)]")) // false
+console.log(isValidIncorrectApproach("([])")) // true // should return true but it's returning false. cannot distinguish between '([])' and '([)]'
+console.log(isValidIncorrectApproach("()")) // true
+console.log(isValidIncorrectApproach("()[]{}")) // true
+console.log(isValidIncorrectApproach("(]")) // false
+console.log(isValidIncorrectApproach("(){}}{")) // false
