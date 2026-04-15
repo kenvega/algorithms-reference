@@ -85,6 +85,40 @@ console.log(isValid("()[]{}")) // true
 console.log(isValid("(]")) // false
 console.log(isValid("(){}}{")) // false
 
+// solution v2
+//  same solution but more compact
+function isValidv2(string) {
+  const stack = []
+
+  for (let i = 0; i < string.length; i++) {
+    const currentChar = string[i]
+
+    if (currentChar === "(" || currentChar === "[" || currentChar === "{") {
+      stack.push(currentChar)
+    } else {
+      const last = stack.pop()
+
+      if (
+        (currentChar === ")" && last !== "(") ||
+        (currentChar === "]" && last !== "[") ||
+        (currentChar === "}" && last !== "{")
+      ) {
+        return false
+      }
+    }
+  }
+
+  return stack.length === 0
+}
+
+console.log(isValidv2("[")) // false
+console.log(isValidv2("([)]")) // false
+console.log(isValidv2("([])")) // true
+console.log(isValidv2("()")) // true
+console.log(isValidv2("()[]{}")) // true
+console.log(isValidv2("(]")) // false
+console.log(isValidv2("(){}}{")) // false
+
 // old solution
 //  incorrect approach that uses counting
 //   this approach cannot distinguish order
