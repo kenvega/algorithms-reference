@@ -18,18 +18,56 @@
 //               In this case, the max area of water (blue section)
 //                the container can contain is 49
 
-// my solution
-// go through every possible case and record the max
-// double for to get eveyr possible combination i think (?)
+// Constraints:
+// n == height.length
+// 2 <= n <= 10^5
+// 0 <= height[i] <= 10^4
+
+// solution v2 (correct approach)
+//  choose the first and last one as the vertical lines to calculate the area
+//  then try to get a larger area by moving the left or the right vertical line
+//  width would be reduced by doing that but we could hopefully get a bigger vertical line
+//  to decide which vertical line to move just move the shorter one
+//  because moving the larger line could be even taller but in that best case the shorter one still defines the vertical area
+//  then loop doing that until the vertical lines meet
+//  TODO: what happens if both vertical heights are the same at some point?
+function maxAreav2(heights) {
+  let maxAreaRecorded = 0
+
+  let left = 0
+  let right = heights.length - 1
+
+  for (let i = 0; left - right === 1; i++) {
+    const shorterVerticalLine = Math.min(heights[left], heights[right])
+    const currentArea = (right - left) * shorterVerticalLine
+
+    if (currentArea > maxAreaRecorded) {
+      maxAreaRecorded = currentArea
+    }
+  }
+
+  return maxAreaRecorded
+}
+
+console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7])) // 49
+
+// solution v1 (too slow because of O(n^2) time. not accepted as solution in leetcode)
+// go through every possible case to calculate the area and record the max
+// double for to get every possible combination i think
 function maxArea(heights) {
   let max = 0
   for (let i = 0; i < heights.length; i++) {
     const height = heights[i]
-    for (let j = 0; j < heights.length; j++) {
+    for (let j = 1; j < heights.length; j++) {
       const otherHeight = heights[j]
-      const area = // TODO: calculate this
+      const area = (j - i) * Math.min(height, otherHeight)
+      if (area > max) {
+        max = area
+      }
     }
   }
+
+  return max
 }
 
 console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7])) // 49
