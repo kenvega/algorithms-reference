@@ -32,24 +32,36 @@
 //  then loop doing that until the vertical lines meet
 //  TODO: what happens if both vertical heights are the same at some point?
 function maxAreav2(heights) {
+  if (heights.length === 2) {
+    return Math.min(heights[0], heights[1])
+  }
+
   let maxAreaRecorded = 0
 
   let left = 0
   let right = heights.length - 1
 
-  for (let i = 0; left - right === 1; i++) {
+  while (right - left > 1) {
     const shorterVerticalLine = Math.min(heights[left], heights[right])
     const currentArea = (right - left) * shorterVerticalLine
 
     if (currentArea > maxAreaRecorded) {
       maxAreaRecorded = currentArea
     }
+
+    if (shorterVerticalLine === heights[left]) {
+      left++
+    } else {
+      right--
+    }
   }
 
   return maxAreaRecorded
 }
 
-console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7])) // 49
+console.log(maxAreav2([1, 1])) // 1
+console.log(maxAreav2([8, 7, 2, 1])) // 7 // TODO: fix this case. should return 7 but it's returning 4
+console.log(maxAreav2([1, 8, 6, 2, 5, 4, 8, 3, 7])) // 49
 
 // solution v1 (too slow because of O(n^2) time. not accepted as solution in leetcode)
 // go through every possible case to calculate the area and record the max
