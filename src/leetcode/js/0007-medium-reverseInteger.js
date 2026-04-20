@@ -24,6 +24,28 @@
 // Constraints:
 // -2^31 <= x <= 2^31 - 1
 
+// solution v2
+//  same approach, reduced duplication
+function reversev2(number) {
+  const MIN = (-2) ** 31
+  const MAX = 2 ** 31 - 1
+
+  const sign = number < 0 ? -1 : 1
+  const reversed =
+    Number(Math.abs(number).toString().split("").reverse().join("")) * sign
+
+  if (reversed < MIN || reversed > MAX) {
+    return 0
+  } else {
+    return reversed
+  }
+}
+
+console.log(reversev2(123)) // 321
+console.log(reversev2(-123)) // -321
+console.log(reversev2(120)) // 21
+console.log(reversev2(1534236469)) // 0
+
 // my solution v1
 //  convert the number to an string then array then reverse it and then return it back
 function reverse(number) {

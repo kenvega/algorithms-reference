@@ -38,6 +38,7 @@ module.exports = {
     "no-restricted-globals": "off",
     "comma-dangle": "off",
     "radix": "off",
-    "no-restricted-syntax": "off"
+    "no-restricted-syntax": "off",
+    "newline-per-chained-call": "off"
   },
 };
