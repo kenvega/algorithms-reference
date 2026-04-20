@@ -25,23 +25,23 @@
 
 // solution v2 (correct approach)
 //  choose the first and last one as the vertical lines to calculate the area
-//  then try to get a larger area by moving the left or the right vertical line
-//  width would be reduced by doing that but we could hopefully get a bigger vertical line
-//  to decide which vertical line to move just move the shorter one
-//  because moving the larger line could be even taller but in that best case the shorter one still defines the vertical area
-//  then loop doing that until the vertical lines meet
-//  TODO: what happens if both vertical heights are the same at some point?
+//    then try to get a larger area by moving the left or the right vertical line
+//      width would be reduced by doing that but we could hopefully get a bigger vertical line
+//    to decide which vertical line to move just move the shorter one 1 step near to the other one
+//      because moving the larger vertical line could get even a taller one but in that best case scenario
+//        the shorter one would still define the max vertical height for the area
+//      what happens if both vertical heights are the same at some point?
+//        move any because the immediate next area moving either vertical line
+//           will always be smaller than the area where the two vertical lines are equal height
+//             because width will be smaller and the min height will be the same as before or lower
+//    then loop doing that until the vertical lines basically meet each other
 function maxAreav2(heights) {
-  if (heights.length === 2) {
-    return Math.min(heights[0], heights[1])
-  }
-
   let maxAreaRecorded = 0
 
   let left = 0
   let right = heights.length - 1
 
-  while (right - left > 1) {
+  while (right - left >= 1) {
     const shorterVerticalLine = Math.min(heights[left], heights[right])
     const currentArea = (right - left) * shorterVerticalLine
 
@@ -60,7 +60,7 @@ function maxAreav2(heights) {
 }
 
 console.log(maxAreav2([1, 1])) // 1
-console.log(maxAreav2([8, 7, 2, 1])) // 7 // TODO: fix this case. should return 7 but it's returning 4
+console.log(maxAreav2([8, 7, 2, 1])) // 7
 console.log(maxAreav2([1, 8, 6, 2, 5, 4, 8, 3, 7])) // 49
 
 // solution v1 (too slow because of O(n^2) time. not accepted as solution in leetcode)
