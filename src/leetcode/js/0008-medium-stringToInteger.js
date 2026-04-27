@@ -83,7 +83,7 @@ function myAtoi(string) {
 
   // read until non-digit found
   for (let i = 0; i < string.length; i++) {
-    if (isNaN(Number(string[i]))) {
+    if (string[i] < "0" || string[i] > "9") {
       string = string.slice(0, i)
       break
     }
@@ -111,7 +111,7 @@ function myAtoi(string) {
 
   const response = Number(string)
 
-  if (response > 2 ** 31) {
+  if (response >= 2 ** 31) {
     return 2 ** 31 - 1
   }
 
@@ -122,16 +122,16 @@ function myAtoi(string) {
   return Number(string)
 }
 
-console.log(myAtoi("-0")) // -0
+console.log(myAtoi("42")) // 42
 console.log(myAtoi("+1")) // 1
 console.log(myAtoi("-+12")) // 0
 console.log(myAtoi("+-12")) // 0
-console.log(myAtoi("42")) // 42
-console.log(myAtoi("   -042")) // -42
-console.log(myAtoi("1337c0d3")) // 1337
-console.log(myAtoi("0-1")) // 0
-console.log(myAtoi("words and 987")) // 0
 console.log(myAtoi("-91283472332")) // -2147483648
 console.log(myAtoi("21474836460")) // -2147483647
-
-console.log(myAtoi("   +0 123")) // 0 // TODO: fix for this case
+console.log(myAtoi("2147483648")) // 2147483647
+console.log(myAtoi("1337c0d3")) // 1337
+console.log(myAtoi("words and 987")) // 0
+console.log(myAtoi("0-1")) // 0
+console.log(myAtoi("   -042")) // -42
+console.log(myAtoi("-0")) // -0
+console.log(myAtoi("   +0 123")) // 0
