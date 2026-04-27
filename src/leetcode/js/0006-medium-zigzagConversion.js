@@ -35,7 +35,7 @@
 // s consists of English letters (lower-case and upper-case), ',' and '.'.
 // 1 <= numRows <= 1000
 
-// solution v1
+// my solution v1
 // create the format with arrays as you need, then join the results
 function convert(string, numberRows) {
   if (numberRows === 1) return string
@@ -45,7 +45,6 @@ function convert(string, numberRows) {
   let difference = 1
 
   for (let i = 0; i < string.length; i++) {
-    // console.log(formatted, i, indexToSave, formatted[indexToSave])
     formatted[indexToSave].push(string[i])
 
     indexToSave += difference
@@ -54,11 +53,13 @@ function convert(string, numberRows) {
     }
   }
 
-  return formatted
+  return formatted.reduce((acc, cur) => {
+    return acc.concat(cur.join(""))
+  }, "")
 }
 
 console.log(convert("A", 1)) // "A"
-console.log(convert("AB", 1))
+console.log(convert("AB", 1)) // "AB"
+console.log(convert("A,BC", 2)) // "AB,C"
 console.log(convert("PAYPALISHIRING", 3)) // "PAHNAPLSIIGYIR"
 console.log(convert("PAYPALISHIRING", 4)) // "PINALSIGYAHRPI"
-// TODO: fix with words that already include a ',' in the original string
