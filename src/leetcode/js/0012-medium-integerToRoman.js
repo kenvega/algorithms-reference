@@ -38,7 +38,44 @@
 // Constraints:
 //   1 <= num <= 3999
 
-// my solution v1
+// better solution (most accepted approach)
+// store roman values in descending order and their string symbol
+// then substract and keep forming the final response
+function intToRomanv2(num) {
+  const values = [
+    [1000, "M"],
+    [900, "CM"],
+    [500, "D"],
+    [400, "CD"],
+    [100, "C"],
+    [90, "XC"],
+    [50, "L"],
+    [40, "XL"],
+    [10, "X"],
+    [9, "IX"],
+    [5, "V"],
+    [4, "IV"],
+    [1, "I"]
+  ]
+
+  let result = ""
+
+  for (const [value, symbol] of values) {
+    while (num >= value) {
+      result += symbol
+      num -= value
+    }
+  }
+
+  return result
+}
+
+console.log(intToRomanv2(3749)) // "MMMDCCXLIX"
+console.log(intToRomanv2(58)) // "LVIII"
+console.log(intToRomanv2(100)) // "C"
+console.log(intToRomanv2(1994)) // "MCMXCIV"
+
+// my original solution v1
 // get the number to an object with properties as decimal places and values as the digits
 // could be converted to an array to
 // then use the rules to create the roman numeral
@@ -85,7 +122,7 @@ function intToRoman(num) {
 
 console.log(intToRoman(3749)) // "MMMDCCXLIX"
 console.log(intToRoman(58)) // "LVIII"
-console.log(intToRoman(100)) // "MCMXCIV"
+console.log(intToRoman(100)) // "C"
 console.log(intToRoman(1994)) // "MCMXCIV"
 
 // const dict = {
