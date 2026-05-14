@@ -32,8 +32,21 @@ function letterCombinations(digits) {
     9: ["w", "x", "y", "z"]
   }
 
+  // toma cada digito y luego haz combinaciones
+  let response = []
+
+  digits = digits.split("")
+  let lettersByDigits = []
+
+  for (let i = 0; i < digits.length; i++) {
+    const digit = digits[i]
+    const lettersByDigit = mapping[digit]
+
+    lettersByDigits.push(lettersByDigit)
+  }
+
   // TODO: complete
 }
 
-console.log(letterCombinations("23"))
-console.log(letterCombinations("2"))
+console.log(letterCombinations("23")) // ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+console.log(letterCombinations("2")) // ["a","b","c"]
